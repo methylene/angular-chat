@@ -10,7 +10,7 @@ var app = angular.module("chatApp", []).factory("firebaseService", function($tim
             alert('1');
         }, 0);
     });
-    setTimeout(function(){
+    $timeout(function(){
         alert('3');
         messageholder.messages = [];
         alert('4');
