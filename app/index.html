@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="chatApp" ng-controller="chatController">
 <head>
     <title>Chat</title>
     <link rel="stylesheet" href="css/reset.css"/>
@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div ng-app="chatApp" ng-controller="chatController">
+<div>
     <div id='messagesDiv'>
         <div ng-repeat="message in messageholder.messages">
             <em>{{message.name}}: {{message.text}}</em>
@@ -22,16 +22,13 @@
     </form>
 </div>
 
-<div id="container">
-    <canvas id="imageView" width="400" height="300" />
-</div>
+<div ng-class="someClass">Hi</div>
 
 <script src="http://static.firebase.com/v0/firebase.js"></script>
 
 <script src="lib/angular.js"></script>
 <script src="js/app.js"></script>
 <script src="js/controllers.js"></script>
-<script src="lib/sketch.js"></script>
 
 </body>
 </html>

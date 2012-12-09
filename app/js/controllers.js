@@ -3,6 +3,7 @@
 function chatController($scope, firebaseService) {
     $scope.name = "";
     $scope.text = "";
+    $scope.someClass = "none";
     $scope.messageholder = firebaseService.messageholder;
     $scope.loadMessages = function() {
         $scope.messageholder = firebaseService.messageholder;
