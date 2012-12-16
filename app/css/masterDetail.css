@@ -1,0 +1,48 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    position:relative;
+}
+
+input {
+    font-size: 24px;
+}
+
+input[type=text] {
+    color: #424547;
+    border: 1px solid #c2c2c2;
+    background-color: white;
+}
+
+em {
+    font-style: normal;
+    font-weight: bold;
+    color: black;
+}
+
+#messagesDiv {
+    background-color: white;
+    overflow: auto;
+    width: 100%;
+    padding: 20px;
+    border-top: 2px dotted #b22222;
+    border-bottom: 2px dotted #b22222;
+}
+
+#nameInput {
+    width: 25%;
+}
+
+#messageInput {
+    width: 70%;
+}
+
+.none {
+    width:400px;
+    height:200px;
+    background-color: Red;
+}
+

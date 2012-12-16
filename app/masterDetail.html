@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="masterDetailApp" ng-controller="masterDetailController">
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/masterDetail.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+</head>
+<body>
+
+<div>
+    <div id='messagesDiv'>
+        <div ng-repeat="row in rows">
+            <span>Day: {{row.day}}</span>
+
+            <div ng-repeat="hour in row.hours">
+                <span>Start: {{hour.start}}</span>
+                <span>End: {{hour.end}}</span>
+            </div>
+            <input type="button" value="Edit" ng-click="loadRow(row)"/>
+            <input type="button" value="Delete" ng-click="deleteRow(row)"/>
+        </div>
+    </div>
+</div>
+
+<form ng-submit="addRow()">
+    <input type="text" placeholder="Enter a day of the week" ng-model="newDay"/>
+    <input type="submit" id="submit" value="Add day"/>
+</form>
+
+<div><a href="index.html">Back to index</a></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+<div id="dialog-modal" title="Day editor">
+    <p>Day: {{currentRow.day}}</p>
+    <div ng-repeat="hour in currentRow.hours">
+        <span>Start: {{hour.start}}</span>
+        <span>End: {{hour.end}}</span>
+        <input type="button" value="Edit" ng-click="loadHour(hour)"/>
+        <input type="button" value="Delete" ng-click="deleteHour(hour)"/>
+    </div>
+    <h2>Add hours:</h2>
+    <form ng-submit="addHour()">
+        <input type="text" placeholder="Start" ng-model="newHourStart"/>
+        <input type="text" placeholder="End" ng-model="newHourEnd"/>
+        <input type="submit" id="dialogSubmit" value="Add"/>
+    </form>
+</div>
+
+<div id="dialog-hours" title="Hours editor">
+    <p>Start: </p><input type="text" ng-model="currentHour.start"/>
+    <p>End: </p><input type="text" ng-model="currentHour.end"/>
+</div>
+
+
+<script src="lib/angular.js"></script>
+<script src="lib/underscore.js"></script>
+<script src="jsMasterDetail/app.js"></script>
+<script src="jsMasterDetail/controllers.js"></script>
+
+<script>
+    $(function ($) {
+        $("#dialog-modal").dialog({
+            "height":350,
+            "modal":true,
+            "autoOpen":false
+        });
+        $("#dialog-hours").dialog({
+            "height":350,
+            "modal":true,
+            "autoOpen":false
+        });
+    });
+</script>
+
+</body>
+</html>
