@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- https://github.com/danielzen/angular-jquery-ui -->
+<html ng-app="jquiModule" ng-controller="DndDemo" ng-cloak>
+<head>
+    <title>dragDrop</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/dragDrop.css"/>
+</head>
+<body>
+
+<div>
+
+    <h1>jQuery UI Drag and Drop Demo</h1>
+    <div jqui-drop-accept="acceptToken(list1, $token)"
+         jqui-drop-commit="commitToken(list1, $token)">
+        <h2>Drag these boxes</h2>
+        <div ng-repeat="item in list1"
+             jqui-drag-start="dragStart(item, list1)"
+             jqui-drag-end="dragEnd(item)">{{item.name}} {{item.dragging}}</div>
+    </div>
+
+    <div jqui-drop-accept="acceptToken(list2, $token)"
+         jqui-drop-commit="commitToken(list2, $token)">
+        <h2>Drop them here</h2>
+        <div ng-repeat="item in list2"
+             jqui-drag-start="dragStart(item, list2)"
+             jqui-drag-end="dragEnd(item)">{{item.name}} {{item.dragging}}</div>
+    </div>
+</div>
+
+<div style="clear:both;padding-top:20px"><a href="index.html">Back to index</a></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script src="lib/angular.js"></script>
+<script src="jsDragDrop/app.js"></script>
+<script src="jsDragDrop/controllers.js"></script>
+
+</body>
+</html>
