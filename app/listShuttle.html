@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="listShuttleApp" ng-controller="listShuttleController">
+<head>
+    <title>listShuttle</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/listShuttle.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+</head>
+<body>
+
+<div>
+    <div class="shuttle_container" id="list1container">
+        <div ng-repeat="item in list1">
+            <div ng-class="calculateClassList1(item)" ng-click="selectRowList1(item)">Name: {{item.name}}</div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="shuttle_container" id="list2container">
+        <div ng-repeat="item in list2">
+            <div ng-class="calculateClassList2(item)" ng-click="selectRowList2(item)">Name: {{item.name}}</div>
+        </div>
+    </div>
+</div>
+
+<div style="clear:both" />
+
+<div style="margin-top: 20px">
+
+    <p>
+    <input type="button" value="Move right" ng-click="moveToList2()" />
+    </p>
+    <p>
+    <input type="button" value="Move left" ng-click="moveToList1()" />
+    </p>
+
+</div>
+
+<div style="margin-top: 10px"><a href="index.html">Back to index</a></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+<script src="lib/angular.js"></script>
+<script src="lib/underscore.js"></script>
+<script src="jsListShuttle/app.js"></script>
+<script src="jsListShuttle/controllers.js"></script>
+
+</body>
+</html>
