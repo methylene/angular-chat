@@ -4,7 +4,7 @@ html {
 
 body {
     height: 100%;
-    position:relative;
+    position: relative;
 }
 
 input {
@@ -41,31 +41,31 @@ em {
 }
 
 .none {
-    width:400px;
-    height:200px;
+    width: 400px;
+    height: 200px;
     background-color: Red;
 }
 
-div.shuttle_row_selected {
-    color:White;
-    font-weight: bold;
+div.shuttle_row_active {
+    color: White;
     background-color: Red;
-    padding: 10px 0;
-    border-bottom: 2px solid White;
 }
 
 div.shuttle_row {
     font-weight: bold;
-    background-color: Green;
     padding: 10px 0;
     border-bottom: 2px solid White;
+}
 
+div.shuttle_row_passive {
+    color: Black;
+    background-color: Green;
 }
 
 div.shuttle_container {
-    float:left;
-    height:300px;
-    width:300px;
+    float: left;
+    height: 300px;
+    width: 300px;
     margin-right: 10px;
     border: 5px solid #b22222;
 }

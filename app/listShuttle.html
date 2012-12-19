@@ -26,6 +26,11 @@
 
 <div style="clear:both" />
 
+<form ng-submit="addList1()">
+    <input type="text" placeholder="Enter username..." ng-model="newRowList1"/>
+    <input type="submit" id="submit" value="Add"/>
+</form>
+
 <div style="margin-top: 20px">
 
     <p>
@@ -34,8 +39,12 @@
     <p>
     <input type="button" value="Move left" ng-click="moveToList1()" />
     </p>
-
+    <p>
+    <input type="button" value="Remove" ng-click="remove()" />
+    </p>
 </div>
+
+
 
 <div style="margin-top: 10px"><a href="index.html">Back to index</a></div>
 
