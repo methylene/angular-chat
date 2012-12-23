@@ -5,7 +5,7 @@ Playing with [angular.js](https://github.com/angular/angular.js), I want to see 
 
 Using a [jsfiddle](http://jsfiddle.net/hCykg/1/) and the [angular-seed](https://github.com/angular/angular-seed) as starting points.
 
-It runs in [thttpd](http://www.acme.com/software/thttpd/), using this command: (assuming the "app" folder is in the working directory)
+It runs in [thttpd](http://www.acme.com/software/thttpd/), using this command: (assuming the working directory contains the "app" folder)
 
 	sudo thttpd -r -d "app" -h localhost -p 8000 -M 0
 
