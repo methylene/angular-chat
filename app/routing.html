@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html ng-app="routingApp" ng-controller="routingController">
+<html ng-app="routingApp">
+
 <head>
     <title>routing</title>
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
 </head>
-<body>
 
-<div ng-view>
+<body>
+<!-- top -->
+<header id="header">
+    <ul class="menu">
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/about">About</a></li>
+        <li><a href="#/experiments">Experiments</a></li>
+    </ul>
+</header>
+
+<div id="container">
+    <div ng-view></div>
 </div>
 
 <div style="margin-top: 10px"><a href="index.html">Back to index</a></div>
 
 <script src="lib/angular.js"></script>
-<script src="lib/underscore.js"></script>
-<script src="jsRouting/controllers.js"></script>
+<script type="text/javascript" src="jsRouting/controllers.js"></script>
 
 </body>
 </html>
