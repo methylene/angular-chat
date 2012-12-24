@@ -1,6 +1,5 @@
-"use strict";
-
-function chatOnlyController($timeout, $scope) {
+var app = angular.module("chatAppOnlyController", []);
+app.controller('chatOnlyController', ['$timeout', '$scope', function ($timeout, $scope) {
     var ref = new Firebase("https://guest90842411.firebaseio-demo.com/");
     var messageholder = {"messages":{}};
     ref.on("value", function(messageSnapshot) {
@@ -21,4 +20,4 @@ function chatOnlyController($timeout, $scope) {
         addMessage($scope.name, $scope.text);
         $scope.text = "";
     };
-}
+}]);
