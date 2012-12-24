@@ -7,13 +7,11 @@ var util = require('util'),
 
 var DEFAULT_PORT = 3000;
 
-app = express();
+var server = express();
+server.enable('jsonp callback');
 
-app.get('*', function (req, res) {
-	res.writeHead(200, { "Content-Type": "application/json" });   
-	res.write("angular.callbacks._0(");
-	res.write(JSON.stringify(
-    {"days":[
+server.get('/jsMasterDetail/dayService', function (req, res) {
+	res.json({"days":[
         {  "day":"Monday",
             "hours":[
                 {
@@ -48,10 +46,8 @@ app.get('*', function (req, res) {
                 }
            ] 
         }
-    ]}));
-	res.write(");");
-	res.end();
+    ]});
 });
 
-app.listen(DEFAULT_PORT);
+server.listen(DEFAULT_PORT);
 console.log('Listening on port: ' + DEFAULT_PORT);
