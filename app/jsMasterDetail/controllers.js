@@ -1,50 +1,20 @@
-"use strict";
+angular.module("masterDetailApp", ['ngResource'])
+.controller('masterDetailController', ['$scope', '$resource', function($scope, $resource) {
+    "use strict";
 
-function masterDetailController($scope) {
-    var rows = [
-        {  "day":"Monday",
-            "hours":[
-                {
-                    "start":8,
-                    "end":12
-                }
-            ]
-        },
-        {  "day":"Tuesday",
-            "hours":[
-                {
-                    "start":8,
-                    "end":12
-                }
-            ]
+    var datasource = $resource('http://localhost:port/jsMasterDetail/dayService',
+        {port:':3000', callback: 'JSON_CALLBACK'},
+        {get:{method:'JSONP'}});
 
-        },
-        {  "day":"Wednesday",
-            "hours":[
-                {
-                    "start":8,
-                    "end":12
-                }
-            ]
+    $scope.rowsHolder = datasource.get();
 
-        },
-        {  "day":"Thursday",
-            "hours":[
-                {
-                    "start":8,
-                    "end":12
-                }
-            ]
-
-        }
-    ];
-    $scope.rows = rows;
     $scope.loadRow = function (row) {
         $scope.currentRow = row;
         $("#dialog-modal").dialog("open");
     };
+
     $scope.addRow = function () {
-        $scope.rows.push({
+        $scope.rowsHolder.days.push({
             "day":$scope.newDay,
             "hours":[
                 {
@@ -54,16 +24,19 @@ function masterDetailController($scope) {
             ]
         });
         $scope.newDay = "";
-    }
+    };
+
     $scope.deleteRow = function (row) {
-        $scope.rows = _($scope.rows).reject(function (e) {
+        $scope.rowsHolder.days = _($scope.rowsHolder.days).reject(function (e) {
             return e.day == row.day;
         });
-    }
+    };
+
     $scope.loadHour = function (hour) {
         $scope.currentHour = hour;
         $("#dialog-hours").dialog("open");
     };
+
     $scope.addHour = function () {
         $scope.currentRow.hours.push({
             "start":$scope.newHourStart,
@@ -72,9 +45,11 @@ function masterDetailController($scope) {
         $scope.newHourStart = "";
         $scope.newHourEnd = "";
     };
+
     $scope.deleteHour = function (hour) {
         $scope.currentRow.hours = _($scope.currentRow.hours).reject(function (e) {
             return e.start == hour.start && e.end == hour.end;
         });
     };
-}
+
+}]);

@@ -11,6 +11,7 @@ app = express();
 
 app.get('*', function (req, res) {
 	res.writeHead(200, { "Content-Type": "application/json" });   
+	res.write("angular.callbacks._0(");
 	res.write(JSON.stringify(
     {"days":[
         {  "day":"Monday",
@@ -48,6 +49,7 @@ app.get('*', function (req, res) {
            ] 
         }
     ]}));
+	res.write(");");
 	res.end();
 });
 
