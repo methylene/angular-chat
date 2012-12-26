@@ -8,10 +8,24 @@ var util = require('util'),
 var DEFAULT_PORT = 3000;
 
 var server = express();
+server.use(express.bodyParser());
 server.enable('jsonp callback');
 
-server.get('/jsMasterDetail/dayService', function (req, res) {
-	res.json({"days":[
+var appHelpers = {
+	'sendFile':  function(pathname, res) {
+		util.puts('sending: ' + pathname);
+		var file = fs.createReadStream(pathname);
+		file.on('data', res.write.bind(res));
+		file.on('close', function () {
+			res.end();
+		});
+		file.on('error', function (error) {
+			util.puts(error);
+		});
+	}
+};
+
+var days = {"days":[
         {  "day":"Monday",
             "hours":[
                 {
@@ -46,7 +60,27 @@ server.get('/jsMasterDetail/dayService', function (req, res) {
                 }
            ] 
         }
-    ]});
+    ]};
+
+
+server.post('/jsMasterDetail/dayService', function (req, res) {
+	console.log(req.body);
+	days = req.body;
+	res.json(res.body);
+});
+
+server.get('/jsMasterDetail/dayService', function (req, res) {
+	res.json(days);
+});
+
+//send anything with a file extension as normal
+server.get('*.*', function (req, res) {
+    appHelpers.sendFile('.' + req.url, res);
+});
+
+//intercept any paths and send "./index.html":
+server.get('*', function (req, res) {
+    appHelpers.sendFile('./index.html', res);
 });
 
 server.listen(DEFAULT_PORT);

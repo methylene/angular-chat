@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="qApp" ng-controller="qController">
+<html ng-app="saveApp" ng-controller="saveController">
 <head>
     <title>Chat</title>
     <link rel="stylesheet" href="css/reset.css"/>
@@ -7,20 +7,6 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
 </head>
 <body>
-
-<div><h3><b>Note:</b> Demonstrates use of $q. A 'delayed value' is produced by the following function: 
-<pre><code>
-var delayedValue = function($scope, deferred, value) {
-    setTimeout(function() {
-        $scope.$apply(function () {
-            deferred.resolve(value);
-        });
-    }, 1000);
-    return deferred.promise;
-};
-</code></pre>
-See also <a href="http://stackoverflow.com/questions/11966252/how-does-the-resource-get-function-work-synchronously-in-angularjs/14043910">a question on stackoverflow</a>
-</div>
 
 <div style="margin-top:10px">
     <div id='messagesDiv'>
@@ -38,7 +24,8 @@ See also <a href="http://stackoverflow.com/questions/11966252/how-does-the-resou
 </div>
 
 <form ng-submit="addRow()">
-    <input type="text" placeholder="Enter a day of the week" ng-model="newDay"/>
+
+    <select ng-model="newDay" ng-options="day for day in allDays" />
     <input type="submit" id="submit" value="Add day"/>
 </form>
 
@@ -64,14 +51,19 @@ See also <a href="http://stackoverflow.com/questions/11966252/how-does-the-resou
 </div>
 
 <div id="dialog-hours" title="Hours editor">
-    <p>Start: </p><input type="text" ng-model="currentHour.start"/>
-    <p>End: </p><input type="text" ng-model="currentHour.end"/>
+    <form ng-submit="submitHourChange()">
+        <p>Start: </p><input type="text" ng-model="currentHour.start"/>
+        <p>End: </p><input type="text" ng-model="currentHour.end"/>
+        <input type="submit" id="hoursChangeSubmit" value="OK"/>
+        <input type="button" onclick="$('#dialog-hours').dialog('close')" value="Cancel"/>
+    </form>
 </div>
 
 
 <script src="lib/angular.js"></script>
+<script src="lib/angular-resource.js"></script>
 <script src="lib/underscore.js"></script>
-<script src="jsQ/controllers.js"></script>
+<script src="jsSave/controllers.js"></script>
 
 <script>
     $(function ($) {

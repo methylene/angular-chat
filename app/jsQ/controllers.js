@@ -1,11 +1,13 @@
-angular.module("qApp", [])
-.controller('qController', ['$scope', '$q', function($scope, $q) {
-    "use strict";
+var delayedValue = function($scope, deferred, value) {
+    setTimeout(function() {
+        $scope.$apply(function () {
+            deferred.resolve(value);
+        });
+    }, 1000);
+    return deferred.promise;
+};
 
-    var deferred = $q.defer();
-	setTimeout(function() {
-$scope.$apply(function() {
-		deferred.resolve({
+var days = {
   "days": [
     {
       "day": "Monday",
@@ -44,10 +46,15 @@ $scope.$apply(function() {
       ]
     }
   ]
-});});
-}, 1000);
+};
 
-    $scope.rowsHolder = deferred.promise;
+angular.module("qApp", [])
+.controller('qController', ['$scope', '$q', function($scope, $q) {
+    "use strict";
+
+    var deferred = $q.defer();
+
+    $scope.rowsHolder = delayedValue($scope, deferred, days);
     $scope.loadRow = function (row) {
         $scope.currentRow = row;
         $("#dialog-modal").dialog("open");

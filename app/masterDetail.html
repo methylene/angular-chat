@@ -8,10 +8,15 @@
 </head>
 <body>
 
-<div><h3><b>Note:</b> This example requires a separate server on port 3000. Fire up <a href="http://nodejs.org">node.js</a>  using the following command:</h3>
+<div><h3><b>Note:</b> This example uses jsonp. Run this example in a thttpd instance on port 8000 using the following command: 
 <pre><code>
-node server/server.js
+sudo thttpd -r -d "app" -h localhost -p 8000 -M 0
 </code></pre>
+The app can still talk to the nodejs instance running on port 3000 (only GET though, so far). Later you can shut down thttpd using this command:
+<pre><code>
+pgrep thttpd | xargs sudo kill
+</code></pre>
+
 </div>
 
 <div style="margin-top:10px">
