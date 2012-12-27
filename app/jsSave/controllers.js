@@ -10,10 +10,11 @@ angular.module('saveApp', ['ngResource'])
     $scope.rowsHolder = days.get();
 
     var saveDays = function() {
-	days.get(function (d) {
+	days.save($scope.rowsHolder);
+	/*days.get(function (d) {
 		d.days = $scope.rowsHolder.days;
 		d.$save();
-	});
+	});*/
     };
 
     $scope.allDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
