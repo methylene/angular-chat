@@ -4,6 +4,9 @@ angular.module('saveApp', ['ngResource'])
 
     var days = $resource('/jsMasterDetail/dayService');
 
+    console.log('keys in days: ' + _.keys(days));
+    console.log('functions in days: ' + _.functions(days));
+
     $scope.rowsHolder = days.get();
 
     var saveDays = function() {
