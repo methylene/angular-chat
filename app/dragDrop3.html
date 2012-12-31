@@ -22,7 +22,7 @@
     <title>JS Bin</title>
 </head>
 <body ng-controller='dndCtrl' ng-cloak>
-<div style='margin-left:auto;margin-right:auto;margin-top:20px;width:568px'>
+<div style='margin-left:auto;margin-right:auto;margin-top:10px;width:568px'>
 
     <!-- Attribute 'data-model' is required on a ui-droppable. It must evalutate to an array. -->
     <div ui-droppable class='droppable' data-model='someArrays.list0' ui-on-drop-rejected='onDropRejected'
@@ -34,7 +34,8 @@
         </div>
     </div>
 
-    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list1' ui-on-drop-rejected='onDropRejected'
+    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list1'
+         ui-on-drop-rejected='onDropRejected'
          ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
         <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list1' data-index='{{$index}}' ui-draggable>
             {{item.name}}
@@ -48,13 +49,20 @@
         </div>
     </div>
 
-    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list3' ui-on-drop-rejected='onDropRejected'
+    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list3'
+         ui-on-drop-rejected='onDropRejected'
          ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
         <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list3' data-index='{{$index}}' ui-draggable>
             {{item.name}}
         </div>
     </div>
 
+</div>
+
+<div style='clear:both;'></div>
+
+<div style='text-align:center;margin:10px 0'>
+    <a href="index.html">Back to index</a>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
@@ -64,4 +72,5 @@
 <script src="js/dragDrop3.js"></script>
 <script src="lib/humanmsg.js"></script>
 
-</body></html>
+</body>
+</html>
