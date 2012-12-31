@@ -5,50 +5,63 @@
     <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet"
           type="text/css"/>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/humanmsg.css"/>
 
     <style>
-        .list1 {
+        .droppable {
             float: left;
             border: 2px solid fuchsia;
             width: 250px;
             padding: 10px;
-            height: 200px;
+            height: 208px;
             border-radius: 10px;
-        }
-
-        .list2 {
-            float: left;
-            border: 2px solid fuchsia;
-            margin-left: 20px;
-            width: 250px;
-            padding: 10px;
-            height: 200px;
-            border-radius: 10px;
+            margin-top: 20px;
         }
     </style>
     <meta charset=utf-8/>
     <title>JS Bin</title>
 </head>
-<body ng-controller="dragDrop3Ctrl" ng-cloak>
-<div style="margin-left:auto;margin-right:auto;margin-top:40px;width:568px">
+<body ng-controller='dndCtrl' ng-cloak>
+<div style='margin-left:auto;margin-right:auto;margin-top:20px;width:568px'>
 
-    <div class='list1' droppable>
-        <div class='btn btn-info btn-block' ng-repeat="item in list1" data-index="{{$index}}"
-             data-reject="{{item.reject}}" draggable>{{item.name}}
+    <!-- Attribute 'data-model' is required on a ui-droppable. It must evalutate to an array. -->
+    <div ui-droppable class='droppable' data-model='someArrays.list0' ui-on-drop-rejected='onDropRejected'
+         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
+        <!-- Every ui-draggable must be a direct child of a ui-droppable. Attribute 'data-index' is required; it's the index
+          of this ui-draggable in the data-model of its parent (see above). -->
+        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list0' data-index='{{$index}}' ui-draggable>
+            {{item.name}}
         </div>
     </div>
 
-    <div class='list2' droppable>
-        <div class='btn btn-info btn-block' ng-repeat="item in list2" data-index="{{$index}}"
-             data-reject="{{item.reject}}" draggable>{{item.name}}
+    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list1' ui-on-drop-rejected='onDropRejected'
+         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
+        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list1' data-index='{{$index}}' ui-draggable>
+            {{item.name}}
         </div>
     </div>
+
+    <div ui-droppable class='droppable' data-model='someArrays.list2' ui-on-drop-rejected='onDropRejected'
+         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
+        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list2' data-index='{{$index}}' ui-draggable>
+            {{item.name}}
+        </div>
+    </div>
+
+    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list3' ui-on-drop-rejected='onDropRejected'
+         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
+        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list3' data-index='{{$index}}' ui-draggable>
+            {{item.name}}
+        </div>
+    </div>
+
 </div>
-<div style="clear:both;padding-top:20px"><a href="index.html">Back to index</a></div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script src="js/dragDrop3.js"></script>
-</body>
-</html>
+<script src="lib/humanmsg.js"></script>
+
+</body></html>
