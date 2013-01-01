@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools-yui-compressed.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <style>
+    </style>
+    <meta charset=utf-8/>
+    <title>JS Bin</title>
+    <script>
+        window.onload = function () {
+            var $rootElement = angular.element(window.document);
+            var modules = [
+                'ng',
+                'myApp',
+                function ($provide) {
+                    $provide.value('$rootElement', $rootElement);
+                }
+            ];
+            var $injector = angular.injector(modules);
+            var $compile = $injector.get('$compile');
+            var compositeLinkFn = $compile($rootElement);
+            var $rootScope = $injector.get('$rootScope');
+            compositeLinkFn($rootScope);
+            $rootScope.$apply();
+        };
+    </script>
+</head>
+<body>
+<div style='margin-left:auto;margin-right:auto;margin-top:20px;width:568px'>
+
+    <h1>{{1 + 1}}</h1>
+</div>
+
+</body>
+</html>

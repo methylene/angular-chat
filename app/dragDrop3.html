@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="css/humanmsg.css"/>
 
     <style>
-        .droppable {
+        #dnd-container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            width: 568px
+        }
+
+        #dnd-container .ui-droppable {
             float: left;
             border: 2px solid fuchsia;
             width: 250px;
@@ -21,38 +28,29 @@
     <meta charset=utf-8/>
     <title>JS Bin</title>
 </head>
-<body ng-controller='dndCtrl' ng-cloak>
-<div style='margin-left:auto;margin-right:auto;margin-top:10px;width:568px'>
+<body>
+<div id='dnd-container' ng-controller='dndCtrl' ng-cloak>
 
-    <!-- Attribute 'data-model' is required on a ui-droppable. It must evalutate to an array. -->
-    <div ui-droppable class='droppable' data-model='someArrays.list0' ui-on-drop-rejected='onDropRejected'
-         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
-        <!-- Every ui-draggable must be a direct child of a ui-droppable. Attribute 'data-index' is required; it's the index
-          of this ui-draggable in the data-model of its parent (see above). -->
-        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list0' data-index='{{$index}}' ui-draggable>
+    <div ui-drop-listener='dropListener' data-model='someArrays.list0'>
+        <div ui-draggable ng-repeat='item in someArrays.list0' data-index='{{$index}}' class='btn btn-info btn-block'>
             {{item.name}}
         </div>
     </div>
 
-    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list1'
-         ui-on-drop-rejected='onDropRejected'
-         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
-        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list1' data-index='{{$index}}' ui-draggable>
+    <div ui-drop-listener='dropListener' data-model='someArrays.list1' style='margin-left: 20px'>
+        <div ui-draggable ng-repeat='item in someArrays.list1' data-index='{{$index}}' class='btn btn-info btn-block'>
             {{item.name}}
         </div>
     </div>
 
-    <div ui-droppable class='droppable' data-model='someArrays.list2' ui-on-drop-rejected='onDropRejected'
-         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
-        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list2' data-index='{{$index}}' ui-draggable>
+    <div ui-drop-listener='dropListener' data-model='someArrays.list2'>
+        <div ui-draggable ng-repeat='item in someArrays.list2' data-index='{{$index}}' class='btn btn-info btn-block'>
             {{item.name}}
         </div>
     </div>
 
-    <div ui-droppable class='droppable' style='margin-left: 20px' data-model='someArrays.list3'
-         ui-on-drop-rejected='onDropRejected'
-         ui-drop-forbidden='isDropForbidden' ui-on-drop-complete='onDropComplete'>
-        <div class='btn btn-info btn-block' ng-repeat='item in someArrays.list3' data-index='{{$index}}' ui-draggable>
+    <div ui-drop-listener='dropListener' data-model='someArrays.list3' style='margin-left: 20px'>
+        <div ui-draggable ng-repeat='item in someArrays.list3' data-index='{{$index}}' class='btn btn-info btn-block'>
             {{item.name}}
         </div>
     </div>
@@ -61,7 +59,7 @@
 
 <div style='clear:both;'></div>
 
-<div style='text-align:center;margin:10px 0'>
+<div style='text-align:center;margin:10px 0 40px 0'>
     <a href="index.html">Back to index</a>
 </div>
 
