@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<div ng-app='app' id='dnd-container' ng-controller='twitterCtrl'>
+<h1>{{twitterResult.results.length}}</h1>
+</div>
+
+<script src='index_files/angular.js'></script>
+<script src='index_files/angular-resource.js'></script>
+
+<script src='index_files/twitter.js'></script>
+
+
+<script>
+    (function () {
+
+        var app = angular.module('app', ['ngResource']);
+
+        app.controller('twitterCtrl', ['$scope', '$resource', function ($scope, $resource) {
+            $scope.twitter=$resource('http://api.twitter.com/1.1/:action',
+                    {action:'search.json', q:'angularjs', callback:'JSON_CALLBACK',count:1},
+                    {get: {method:'JSONP'}});
+            $scope.twitterResult = $scope.twitter.get(function(){},function(){console.log('an eeroo occurred')});
+        }]);
+
+    })();
+</script>
+
+</body>
+</html>
